@@ -5,7 +5,7 @@
 Summary:   Xorg X11 v4l video driver
 Name:      xorg-x11-drv-v4l
 Version:   0.2.0
-Release:   3%{?dist}.3
+Release:   4%{?dist}
 URL:       http://www.x.org
 License:   MIT
 Group:     User Interface/X Hardware Support
@@ -17,7 +17,8 @@ ExcludeArch: s390 s390x
 
 BuildRequires: xorg-x11-server-sdk >= 1.3.0.0-6
 
-Requires:  xorg-x11-server-Xorg >= 1.3.0.0-6
+Requires:  Xorg %(xserver-sdk-abi-requires ansic)
+Requires:  Xorg %(xserver-sdk-abi-requires videodrv)
 
 %description 
 X.Org X11 v4l video driver.
@@ -47,6 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man4/v4l.4*
 
 %changelog
+* Tue Jun 28 2011 Ben Skeggs <bskeggs@redhat.com> - 0.2.0-4
+- rebuild for 6.2 server rebase
+
 * Thu Feb 18 2010 Dennis Gregorovic <dgregor@redhat.com> - 0.2.0-3.3
 - Rebuilt for RHEL 6
 - Related: rhbz#566527

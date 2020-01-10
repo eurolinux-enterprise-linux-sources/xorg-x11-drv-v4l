@@ -5,13 +5,13 @@
 Summary:   Xorg X11 v4l video driver
 Name:      xorg-x11-drv-v4l
 Version:   0.2.0
-Release:   36%{?dist}
+Release:   37%{?dist}
 URL:       http://www.x.org
 License:   MIT
 Group:     User Interface/X Hardware Support
 
 Source0:   ftp://ftp.x.org/pub/individual/driver/%{tarball}-%{version}.tar.bz2
-Patch0:    xorg-x11-drv-v4l-support_v4l2_only_drivers.patch
+Patch0:    xf86-video-v4l-0.2.0-build-fix.patch
 
 ExcludeArch: s390 s390x
 
@@ -51,6 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man4/v4l.4*
 
 %changelog
+* Wed Nov 11 2015 Adam Jackson <ajax@redhat.com> - 0.2.0-37
+- Rebuild for server 1.17
+
 * Tue Apr 29 2014 Adam Jackson <ajax@redhat.com> 0.2.0-36
 - Fix License
 

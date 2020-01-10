@@ -1,0 +1,14 @@
+diff -up xf86-video-v4l-0.2.0/src/v4l.c.jx xf86-video-v4l-0.2.0/src/v4l.c
+--- xf86-video-v4l-0.2.0/src/v4l.c.jx	2008-03-19 16:41:45.000000000 -0400
++++ xf86-video-v4l-0.2.0/src/v4l.c	2015-11-11 15:09:38.708852618 -0500
+@@ -34,6 +34,10 @@
+ # define DEBUG(x)
+ #endif
+ 
++#ifndef VIDEO_INVERT_CLIPLIST
++#define VIDEO_INVERT_CLIPLIST 0x00000002
++#endif
++
+ static void     V4LIdentify(int flags);
+ static Bool     V4LProbe(DriverPtr drv, int flags);
+ static const OptionInfoRec * V4LAvailableOptions(int chipid, int busid);

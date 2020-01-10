@@ -5,7 +5,7 @@
 Summary:   Xorg X11 v4l video driver
 Name:      xorg-x11-drv-v4l
 Version:   0.2.0
-Release:   4%{?dist}
+Release:   6%{?dist}
 URL:       http://www.x.org
 License:   MIT
 Group:     User Interface/X Hardware Support
@@ -48,6 +48,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man4/v4l.4*
 
 %changelog
+* Wed Aug 22 2012 airlied@redhat.com - 0.2.0-6
+- rebuild for server ABI requires
+
+* Wed Aug 08 2012 Ben Skeggs <bskeggs@redhat.com> 0.2.0-5
+- rebuild for 6.4 server rebase
+
 * Tue Jun 28 2011 Ben Skeggs <bskeggs@redhat.com> - 0.2.0-4
 - rebuild for 6.2 server rebase
 

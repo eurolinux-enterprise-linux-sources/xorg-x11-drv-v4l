@@ -5,13 +5,14 @@
 Summary:   Xorg X11 v4l video driver
 Name:      xorg-x11-drv-v4l
 Version:   0.2.0
-Release:   35%{?dist}
+Release:   42%{?dist}
 URL:       http://www.x.org
-License:   GPLv2+
+License:   MIT
 Group:     User Interface/X Hardware Support
 
 Source0:   ftp://ftp.x.org/pub/individual/driver/%{tarball}-%{version}.tar.bz2
 Patch0:    xorg-x11-drv-v4l-support_v4l2_only_drivers.patch
+Patch1:    xf86-video-v4l-0.2.0-build-fix.patch
 
 ExcludeArch: s390 s390x
 
@@ -27,6 +28,7 @@ X.Org X11 v4l video driver.
 %prep
 %setup -q -n %{tarball}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 autoreconf -vif
@@ -51,11 +53,32 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man4/v4l.4*
 
 %changelog
-* Wed Jan 15 2014 Adam Jackson <ajax@redhat.com> - 0.2.0-35
+* Wed Feb 11 2015 Hans de Goede <hdegoede@redhat.com> - 0.2.0-42
+- xserver 1.17 ABI rebuild
+
+* Mon Aug 18 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.0-41
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+
+* Mon Jun 16 2014 Hans de Goede <hdegoede@redhat.com> - 0.2.0-40
+- xserver 1.15.99.903 ABI rebuild
+
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.0-39
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Tue Apr 29 2014 Adam Jackson <ajax@redhat.com> 0.2.0-38
+- v4l2 patch is MIT-compatible, fix License to match
+
+* Mon Apr 28 2014 Hans de Goede <hdegoede@redhat.com> - 0.2.0-37
+- xserver 1.15.99-20140428 git snapshot ABI rebuild
+
+* Mon Jan 13 2014 Adam Jackson <ajax@redhat.com> - 0.2.0-36
 - 1.15 ABI rebuild
 
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.2.0-34
-- Mass rebuild 2013-12-27
+* Tue Dec 17 2013 Adam Jackson <ajax@redhat.com> - 0.2.0-35
+- 1.15RC4 ABI rebuild
+
+* Wed Nov 20 2013 Adam Jackson <ajax@redhat.com> - 0.2.0-34
+- 1.15RC2 ABI rebuild
 
 * Wed Nov 06 2013 Adam Jackson <ajax@redhat.com> - 0.2.0-33
 - 1.15RC1 ABI rebuild

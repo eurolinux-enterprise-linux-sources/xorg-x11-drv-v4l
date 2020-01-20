@@ -1,21 +1,17 @@
-%global tarball xf86-video-v4l
-%global moduledir %(pkg-config xorg-server --variable=moduledir )
-%global driverdir	%{moduledir}/drivers
-
-%undefine _hardened_build
+%define tarball xf86-video-v4l
+%define moduledir %(pkg-config xorg-server --variable=moduledir )
+%define driverdir	%{moduledir}/drivers
 
 Summary:   Xorg X11 v4l video driver
 Name:      xorg-x11-drv-v4l
 Version:   0.2.0
-Release:   49%{?dist}
+Release:   33%{?dist}
 URL:       http://www.x.org
-License:   MIT
+License:   GPLv2+
 Group:     User Interface/X Hardware Support
 
 Source0:   ftp://ftp.x.org/pub/individual/driver/%{tarball}-%{version}.tar.bz2
 Patch0:    xorg-x11-drv-v4l-support_v4l2_only_drivers.patch
-Patch1:    xf86-video-v4l-0.2.0-build-fix.patch
-Patch2:    0001-Remove-call-to-LoaderGetOS.patch
 
 ExcludeArch: s390 s390x
 
@@ -31,8 +27,6 @@ X.Org X11 v4l video driver.
 %prep
 %setup -q -n %{tarball}-%{version}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 autoreconf -vif
@@ -52,67 +46,11 @@ find $RPM_BUILD_ROOT -regex ".*\.la$" | xargs rm -f --
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%defattr(-,root,root,-)
 %{driverdir}/v4l_drv.so
 %{_mandir}/man4/v4l.4*
 
 %changelog
-* Tue Jul 17 2018 Olivier Fourdan <ofourdan@redhat.com> - 0.2.0-49
-- Remove call to LoaderGetOS - Patch wasn't applied (#1601960)
-
-* Tue Jul 17 2018 Olivier Fourdan <ofourdan@redhat.com> - 0.2.0-48
-- Remove call to LoaderGetOS (#1601960)
-
-* Wed May 30 2018 Adam Jackson <ajax@redhat.com> - 0.2.0-47.1
-- Rebuild for xserver 1.20
-
-* Thu Sep 29 2016 Hans de Goede <hdegoede@redhat.com> - 0.2.0-47
-- Rebuild against xserver-1.19
-
-* Fri Feb 05 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.2.0-46
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
-
-* Thu Jan 28 2016 Peter Hutterer <peter.hutterer@redhat.com>
-- Remove unnecessary defattr
-    
-* Wed Jan 20 2016 Peter Hutterer <peter.hutterer@redhat.com>
-- s/define/global/
-
-* Wed Jul 29 2015 Dave Airlie <airlied@redhat.com> - 0.2.0-45
-- 1.15 ABI rebuild
-
-* Tue Jun 23 2015 Adam Jackson <ajax@redhat.com> - 0.2.0-44
-- Undefine _hardened_build
-
-* Fri Jun 19 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.0-43
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
-
-* Wed Feb 11 2015 Hans de Goede <hdegoede@redhat.com> - 0.2.0-42
-- xserver 1.17 ABI rebuild
-
-* Mon Aug 18 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.0-41
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
-
-* Mon Jun 16 2014 Hans de Goede <hdegoede@redhat.com> - 0.2.0-40
-- xserver 1.15.99.903 ABI rebuild
-
-* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.0-39
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
-
-* Tue Apr 29 2014 Adam Jackson <ajax@redhat.com> 0.2.0-38
-- v4l2 patch is MIT-compatible, fix License to match
-
-* Mon Apr 28 2014 Hans de Goede <hdegoede@redhat.com> - 0.2.0-37
-- xserver 1.15.99-20140428 git snapshot ABI rebuild
-
-* Mon Jan 13 2014 Adam Jackson <ajax@redhat.com> - 0.2.0-36
-- 1.15 ABI rebuild
-
-* Tue Dec 17 2013 Adam Jackson <ajax@redhat.com> - 0.2.0-35
-- 1.15RC4 ABI rebuild
-
-* Wed Nov 20 2013 Adam Jackson <ajax@redhat.com> - 0.2.0-34
-- 1.15RC2 ABI rebuild
-
 * Wed Nov 06 2013 Adam Jackson <ajax@redhat.com> - 0.2.0-33
 - 1.15RC1 ABI rebuild
 

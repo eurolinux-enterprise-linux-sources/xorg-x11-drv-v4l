@@ -7,7 +7,7 @@
 Summary:   Xorg X11 v4l video driver
 Name:      xorg-x11-drv-v4l
 Version:   0.2.0
-Release:   47%{?dist}
+Release:   49%{?dist}
 URL:       http://www.x.org
 License:   MIT
 Group:     User Interface/X Hardware Support
@@ -15,6 +15,7 @@ Group:     User Interface/X Hardware Support
 Source0:   ftp://ftp.x.org/pub/individual/driver/%{tarball}-%{version}.tar.bz2
 Patch0:    xorg-x11-drv-v4l-support_v4l2_only_drivers.patch
 Patch1:    xf86-video-v4l-0.2.0-build-fix.patch
+Patch2:    0001-Remove-call-to-LoaderGetOS.patch
 
 ExcludeArch: s390 s390x
 
@@ -31,6 +32,7 @@ X.Org X11 v4l video driver.
 %setup -q -n %{tarball}-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 autoreconf -vif
@@ -54,6 +56,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man4/v4l.4*
 
 %changelog
+* Tue Jul 17 2018 Olivier Fourdan <ofourdan@redhat.com> - 0.2.0-49
+- Remove call to LoaderGetOS - Patch wasn't applied (#1601960)
+
+* Tue Jul 17 2018 Olivier Fourdan <ofourdan@redhat.com> - 0.2.0-48
+- Remove call to LoaderGetOS (#1601960)
+
+* Wed May 30 2018 Adam Jackson <ajax@redhat.com> - 0.2.0-47.1
+- Rebuild for xserver 1.20
+
 * Thu Sep 29 2016 Hans de Goede <hdegoede@redhat.com> - 0.2.0-47
 - Rebuild against xserver-1.19
 
